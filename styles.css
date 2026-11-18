@@ -1,0 +1,167 @@
+/* Trivia — polished standalone styles
+   Palette (see ../NOTES.md for the colour-theory notes):
+   - Primary indigo  #4f46e5  header gradient start, headings
+   - Violet          #7c3aed  header gradient end (analogous to indigo)
+   - Accent amber    #f59e0b  Check Answer button, dividers (complementary accent)
+   - Success         #16a34a  correct-answer feedback
+   - Error           #dc2626  incorrect-answer feedback
+   - Page background #f5f3ff  indigo-tinted white
+   - Card            #ffffff
+   - Text            #1e1b2e
+*/
+
+:root {
+  --indigo: #4f46e5;
+  --violet: #7c3aed;
+  --amber: #f59e0b;
+  --amber-dark: #d97706;
+  --success: #16a34a;
+  --error: #dc2626;
+  --bg: #f5f3ff;
+  --card: #ffffff;
+  --text: #1e1b2e;
+  --muted: #64748b;
+  --choice-bg: #e0e7ff;
+  --choice-hover: #c7d2fe;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--indigo), var(--violet));
+  color: #ffffff;
+  margin-bottom: 2rem;
+  padding: 2.5rem 1rem 2rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 760px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section {
+  background-color: var(--card);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.10);
+  margin-bottom: 1.5rem;
+  padding: 1rem 2rem 1.25rem;
+}
+
+.section h2 {
+  color: var(--indigo);
+  margin-bottom: 0.5rem;
+}
+
+.section hr {
+  border: none;
+  border-top: 3px solid var(--amber);
+  margin: 0 0 1rem;
+  width: 64px;
+  margin-left: 0;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+button {
+  background-color: var(--choice-bg);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  vertical-align: middle;
+}
+
+button:hover {
+  background-color: var(--choice-hover);
+}
+
+button:focus-visible,
+input[type="text"]:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+}
+
+#check {
+  background-color: var(--amber);
+  color: #1e1b2e;
+  font-weight: 700;
+}
+
+#check:hover {
+  background-color: var(--amber-dark);
+  color: #ffffff;
+}
+
+.free-response {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.8;
+  padding: 0.25rem 0.75rem;
+  width: min(320px, 100%);
+}
+
+.feedback {
+  font-weight: 700;
+  min-height: 1.5em;
+}
+
+.footer {
+  color: var(--muted);
+  padding: 1rem;
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

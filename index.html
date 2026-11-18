@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Trivia — a small interactive quiz built with HTML, CSS and JavaScript for Harvard CS50x Week 8. Answer a multiple-choice question and a free-response question and get instant feedback.">
+  <title>Trivia! — CS50x Week 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <h1>Trivia!</h1>
+    <p class="subtitle">CS50x Week 8 &middot; HTML, CSS &amp; JavaScript</p>
+  </header>
+
+  <main class="container">
+    <section class="section" aria-labelledby="part1-heading">
+      <h2 id="part1-heading">Part 1: Multiple Choice</h2>
+      <hr>
+      <h3>In CS50 Week 1, which programming language did you first use to print &ldquo;hello, world&rdquo;?</h3>
+      <div class="choices">
+        <button class="incorrect" type="button">Scratch</button>
+        <button class="correct" type="button">C</button>
+        <button class="incorrect" type="button">Python</button>
+        <button class="incorrect" type="button">SQL</button>
+      </div>
+      <p id="feedback1" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="section" aria-labelledby="part2-heading">
+      <h2 id="part2-heading">Part 2: Free Response</h2>
+      <hr>
+      <h3>What is the capital city of Pakistan?</h3>
+      <div class="free-response">
+        <label class="visually-hidden" for="answer">Your answer</label>
+        <input id="answer" type="text" placeholder="Type your answer" autocomplete="off">
+        <button id="check" type="button">Check Answer</button>
+      </div>
+      <p id="feedback2" class="feedback" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built by Hamza Madni for Harvard CS50x, Week 8.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
