@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Trivia — a small interactive quiz built with HTML, CSS and JavaScript for Harvard CS50x Week 8. Answer a multiple-choice question and a free-response question and get instant feedback.">
-  <title>Trivia! — CS50x Week 8</title>
+  <meta name="description" content="Trivia — a country quiz built with HTML, CSS and JavaScript for Harvard CS50x Week 8. Pick a country and answer 5 random questions about it — a different set every time you play.">
+  <title>Trivia! — Country Quiz · CS50x Week 8</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
@@ -12,34 +12,48 @@
 <body>
   <header class="header">
     <h1>Trivia!</h1>
-    <p class="subtitle">CS50x Week 8 &middot; HTML, CSS &amp; JavaScript</p>
+    <p class="subtitle">Country Quiz &middot; CS50x Week 8 &middot; HTML, CSS &amp; JavaScript</p>
   </header>
 
   <main class="container">
-    <section class="section" aria-labelledby="part1-heading">
-      <h2 id="part1-heading">Part 1: Multiple Choice</h2>
+
+    <!-- Start screen: choose a country -->
+    <section id="start-screen" class="section" aria-labelledby="start-heading">
+      <h2 id="start-heading">Choose a Country</h2>
       <hr>
-      <h3>In CS50 Week 1, which programming language did you first use to print &ldquo;hello, world&rdquo;?</h3>
-      <div class="choices">
-        <button class="incorrect" type="button">Scratch</button>
-        <button class="correct" type="button">C</button>
-        <button class="incorrect" type="button">Python</button>
-        <button class="incorrect" type="button">SQL</button>
-      </div>
-      <p id="feedback1" class="feedback" aria-live="polite"></p>
+      <p>Pick a country and you will get <strong>5 random questions</strong> about it — capitals, currency, landmarks, geography and more. Every game is different: the questions and the answer order are shuffled each time.</p>
+      <div id="country-grid" class="country-grid" role="group" aria-label="Choose a country"></div>
     </section>
 
-    <section class="section" aria-labelledby="part2-heading">
-      <h2 id="part2-heading">Part 2: Free Response</h2>
-      <hr>
-      <h3>What is the capital city of Pakistan?</h3>
-      <div class="free-response">
-        <label class="visually-hidden" for="answer">Your answer</label>
-        <input id="answer" type="text" placeholder="Type your answer" autocomplete="off">
-        <button id="check" type="button">Check Answer</button>
+    <!-- Quiz screen -->
+    <section id="quiz-screen" class="section" hidden aria-labelledby="quiz-heading">
+      <div class="quiz-meta">
+        <h2 id="quiz-heading">Quiz</h2>
+        <p id="score-display" class="score-display" aria-live="polite">Score: 0</p>
       </div>
-      <p id="feedback2" class="feedback" aria-live="polite"></p>
+      <hr>
+      <p id="progress-text" class="progress-text">Question 1 of 5</p>
+      <div class="progress-bar" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="1" id="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <h3 id="question-text" class="question-text"></h3>
+      <div id="options" class="choices options"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+      <button id="next-btn" class="primary-btn" type="button" hidden>Next Question</button>
     </section>
+
+    <!-- End screen -->
+    <section id="end-screen" class="section" hidden aria-labelledby="end-heading">
+      <h2 id="end-heading">Quiz Complete!</h2>
+      <hr>
+      <p id="final-score" class="final-score"></p>
+      <p id="final-message" class="final-message"></p>
+      <div class="end-actions">
+        <button id="again-btn" class="primary-btn" type="button">Play Again</button>
+        <button id="change-btn" class="secondary-btn" type="button">Change Country</button>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">

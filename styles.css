@@ -1,8 +1,8 @@
-/* Trivia — polished standalone styles
-   Palette (see ../NOTES.md for the colour-theory notes):
+/* Trivia v2 — Country Quiz styles
+   Palette (unchanged from the polished Trivia, see ../NOTES.md):
    - Primary indigo  #4f46e5  header gradient start, headings
    - Violet          #7c3aed  header gradient end (analogous to indigo)
-   - Accent amber    #f59e0b  Check Answer button, dividers (complementary accent)
+   - Accent amber    #f59e0b  primary buttons, dividers, progress bar (complementary accent)
    - Success         #16a34a  correct-answer feedback
    - Error           #dc2626  incorrect-answer feedback
    - Page background #f5f3ff  indigo-tinted white
@@ -88,12 +88,6 @@ body {
   margin-left: 0;
 }
 
-.choices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
 button {
   background-color: var(--choice-bg);
   border: 1px solid transparent;
@@ -113,42 +107,161 @@ button:hover {
   background-color: var(--choice-hover);
 }
 
-button:focus-visible,
-input[type="text"]:focus-visible {
+button:focus-visible {
   outline: 3px solid var(--amber);
   outline-offset: 2px;
 }
 
-#check {
-  background-color: var(--amber);
-  color: #1e1b2e;
+button:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Country selection */
+.country-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 1rem;
+}
+
+.country-card {
+  align-items: center;
+  background-color: var(--bg);
+  border: 2px solid var(--choice-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem 0.75rem;
+}
+
+.country-card:hover {
+  background-color: var(--choice-hover);
+  border-color: var(--indigo);
+}
+
+.country-card .flag {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.country-card .country-name {
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
-#check:hover {
-  background-color: var(--amber-dark);
+.country-card .country-tag {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Quiz screen */
+.quiz-meta {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: space-between;
+}
+
+.score-display {
+  color: var(--indigo);
+  font-weight: 700;
+  margin: 0;
+}
+
+.progress-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.progress-bar {
+  background-color: var(--choice-bg);
+  border-radius: 999px;
+  height: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--amber), var(--amber-dark));
+  height: 100%;
+  transition: width 0.25s ease-in-out;
+  width: 20%;
+}
+
+.question-text {
+  margin-top: 0;
+}
+
+.options {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.option-btn {
+  text-align: left;
+  width: 100%;
+}
+
+.option-btn.correct {
+  background-color: var(--success);
   color: #ffffff;
 }
 
-.free-response {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-input[type="text"] {
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.8;
-  padding: 0.25rem 0.75rem;
-  width: min(320px, 100%);
+.option-btn.incorrect {
+  background-color: var(--error);
+  color: #ffffff;
 }
 
 .feedback {
   font-weight: 700;
   min-height: 1.5em;
+}
+
+.primary-btn {
+  background-color: var(--amber);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  background-color: var(--amber-dark);
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background-color: var(--card);
+  border: 2px solid var(--indigo);
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+.secondary-btn:hover {
+  background-color: var(--choice-bg);
+}
+
+/* End screen */
+.final-score {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--indigo);
+  margin-bottom: 0.25rem;
+}
+
+.final-message {
+  margin-top: 0;
+}
+
+.end-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .footer {
@@ -157,11 +270,16 @@ input[type="text"] {
   text-align: center;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+@media (max-width: 560px) {
+  .header h1 {
+    font-size: 36px;
+  }
+
+  .section {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
 }
