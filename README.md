@@ -1,3 +1,5 @@
+🌐 Live demo: https://hamza-474.github.io/trivia/
+
 # Trivia — Interactive Quiz
 
 Trivia is a small interactive quiz web page built with plain HTML, CSS and JavaScript for Harvard's CS50x (Week 8). It asks two questions — one multiple-choice and one free-response — and gives instant visual feedback in the browser: a correct answer turns green, a wrong answer turns red, with a short "Correct!" / "Incorrect" message under each question. There is no server and no build step; everything runs on the page.
